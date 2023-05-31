@@ -17,7 +17,7 @@
 	// }
 
 	"Print to console":{
-		"prefix":"treenode",
+		"prefix":"TreeNode",
 		"body": [
 			"struct TreeNode{",
 			"\tint val;",
@@ -27,7 +27,6 @@
 			"\tTreeNode(int x): val(x), left(nullptr), right(nullptr) {}",
 			"\tTreeNode(int x, TreeNode *left, TreeNode *right): val(x), left(left), right(right) {}",
 			"};"
-				
 		]
 	}
 }
