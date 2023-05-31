@@ -3,63 +3,34 @@
 #include <queue>
 #include <algorithm>
 #include <map>
+#include <stack>
 using namespace std;
 
-int kthSmallest(vector<vector<int>>&, int);
-vector<double> sampleStats(vector<int>&);
+struct TreeNode{
+	int val;
+	TreeNode *left;
+	TreeNode *right;
+	TreeNode(): val(0), left(nullptr), right(nullptr) {}
+	TreeNode(int x): val(x), left(nullptr), right(nullptr) {}
+	TreeNode(int x, TreeNode *left, TreeNode *right): val(x), left(left), right(right) {}
+};
+vector<int> postorderTraversal(TreeNode*);
+TreeNode* sufficientSubset(TreeNode*,int);
 int main()
 {
-	vector<int> count={0,1,3,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-	vector<double> a=sampleStats(count);
-	for (auto& val: a) cout << val << endl;
+	TreeNode* node0=new TreeNode(1);
+	TreeNode* node2=new TreeNode(2);
+	TreeNode* node3=new TreeNode(3);
+	node0->right=node2; node0->left=nullptr;
+	node2->left=node3; node2->right=nullptr;
+	vector<int> ans=postorderTraversal(node0);
+	for(auto a:ans) cout << a << endl;
 	return 0;
 }
 
-vector<double> sampleStats(vector<int>& count) 
-{
-	double minimum,maximum,mean,median,mode;
-	int vaild_step=0,max_val=-1;
-	double total;
 
-	bool odevity=false;
-	map<double,double> umap;
-	for(int i=0;i<count.size();i++) 
-		if(count[i]!=0) 
-		{
-			umap[i]=count[i];
-			total+=count[i]*i;
-			vaild_step++;
-			int d=max_val;
-			max_val=max(count[i],max_val);
-			if(d!=max_val)
-			{
-				mode=count[i];
-			}
-		}
-	//奇fasle偶true
-	if(vaild_step%2==0) odevity=true;
-	else if(vaild_step%2!=0) odevity=false;
-	auto ite=umap.begin();
-	minimum=ite->first;
-	ite=umap.end(); ite--;
-	maximum=ite->first;
-	mean=total/vaild_step;
-	int vaild_step_median=vaild_step/2;
-	int step=0;
-	auto a=umap.begin();
-	for( ;a!=umap.end();a++)
-	{
-		step++;
-		if(step==vaild_step_median) break;
-	}
-	if(odevity==true) 
-	{
-		median=a->first; a++;
-		median+=a->first;
-	}
-	else if(odevity==false) 
-	{
-		median=a->first;
-	}
-	return {minimum,maximum,mean,median,mode};
+TreeNode* sufficientSubset(TreeNode* root,int limit)
+{
+
 }
+
