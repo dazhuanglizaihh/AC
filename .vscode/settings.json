@@ -3,7 +3,11 @@
         "iostream": "cpp",
         "queue": "cpp",
         "algorithm": "cpp",
-        "vector": "cpp"
-    }
+        "vector": "cpp",
+        "xtree": "cpp",
+        "set": "cpp",
+        "xstring": "cpp"
+    },
+    "editor.fontSize": 15
 
 }
